@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".PacientesFragment">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:id="@+id/etiqueta1"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre Completo"
+            android:id="@+id/nombrecompleto"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@id/etiqueta1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edad"
+            android:layout_below="@id/etiqueta1"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:id="@+id/etiqueta2"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Edad"
+            android:layout_marginLeft="40dp"
+            android:inputType="number"
+            android:layout_toEndOf="@id/etiqueta2"
+            android:layout_below="@id/nombrecompleto"
+            android:id="@+id/edad"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Direccion"
+            android:layout_below="@id/etiqueta2"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:id="@+id/etiqueta3"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Direccion"
+            android:layout_toEndOf="@id/etiqueta3"
+            android:layout_below="@id/edad"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/direccion"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ocupacion"
+            android:layout_below="@id/etiqueta3"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:id="@+id/etiqueta4"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ocupacion"
+            android:layout_toEndOf="@id/etiqueta4"
+            android:layout_below="@id/direccion"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/ocupacion"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Telefono"
+            android:layout_below="@id/etiqueta4"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:id="@+id/etiqueta5"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Telefono"
+            android:layout_toEndOf="@id/etiqueta5"
+            android:layout_below="@id/ocupacion"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/telefono"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insertar"
+            android:id="@+id/insertar"
+            android:layout_below="@id/etiqueta5"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mostrar \n Datos"
+            android:id="@+id/mostrar"
+            android:layout_below="@id/etiqueta5"
+            android:layout_toEndOf="@id/insertar"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="actualizar"
+            android:id="@+id/actualizar"
+            android:layout_below="@id/mostrar"
+            android:layout_toEndOf="@id/guardar"
+            android:layout_marginLeft="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                android:text="GUARDAR"
+                android:id="@+id/guardar"
+                android:layout_below="@id/insertar"
+            android:layout_marginLeft="65dp"
+                android:layout_marginTop="5dp"/>
+
+
+        <ListView
+            android:layout_width="358dp"
+            android:layout_height="330dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/guardar"
+            android:id="@+id/lista"/>
+
+
+
+</RelativeLayout>
