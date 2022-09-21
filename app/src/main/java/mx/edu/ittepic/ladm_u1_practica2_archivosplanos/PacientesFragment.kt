@@ -34,6 +34,7 @@ class PacientesFragment : Fragment() {
     var posicionActualizar = -1
 
     private fun insertar(){
+        if(validarCampos()){
         var concatenacion = binding.nombrecompleto.text.toString()+","+
                 binding.edad.text.toString() +","+
                 binding.direccion.text.toString() +","+
@@ -46,8 +47,26 @@ class PacientesFragment : Fragment() {
         binding.edad.setText("")
         binding.direccion.setText("")
         binding.ocupacion.setText("")
-        binding.telefono.setText("")
+        binding.telefono.setText("")}
     }
+
+    private fun validarCampos(): Boolean {
+
+        if(binding.nombrecompleto.getText().toString() == "" &&
+            binding.edad.getText().toString() == "" &&
+            binding.direccion.getText().toString() == "" &&
+            binding.ocupacion.getText().toString() == "" &&
+            binding.telefono.getText().toString() == ""){
+
+            Toast.makeText(context,"NO AGREGASTE INFORMACION",Toast.LENGTH_LONG)
+                .show()
+            return false
+        }
+        return true
+
+
+    }
+
 
     private fun guardarEnArchivo() {
         try{
@@ -167,47 +186,54 @@ class PacientesFragment : Fragment() {
 
 
         binding.actualizar.setOnClickListener {
-            if(posicionActualizar == -1){
-                AlertDialog.Builder(context)
-                    .setTitle("Error")
-                    .setMessage("No está en modo actualización")
-                    .show()
-                return@setOnClickListener
-            }else{
-                AlertDialog.Builder(context)
-                    .setTitle("Confirmación")
-                    .setMessage("Estas seguro que deseas actualizar a ${listaDatosContactos.get(posicionActualizar)}")
-                    .setPositiveButton("Si"){
-                            d,f->
-                        var concatenacion = binding.nombrecompleto.text.toString() + "," +
-                                binding.edad.text.toString()+ "," +
-                                binding.direccion.text.toString()+ "," +
-                                binding.ocupacion.text.toString()+ "," +
-                                binding.telefono.text.toString()
+            if(validarCampos()) {
+                if (posicionActualizar == -1) {
+                    AlertDialog.Builder(context)
+                        .setTitle("Error")
+                        .setMessage("No está en modo actualización")
+                        .show()
+                    return@setOnClickListener
+                } else {
+                    AlertDialog.Builder(context)
+                        .setTitle("Confirmación")
+                        .setMessage(
+                            "Estas seguro que deseas actualizar a ${
+                                listaDatosContactos.get(
+                                    posicionActualizar
+                                )
+                            }"
+                        )
+                        .setPositiveButton("Si") { d, f ->
+                            var concatenacion = binding.nombrecompleto.text.toString() + "," +
+                                    binding.edad.text.toString() + "," +
+                                    binding.direccion.text.toString() + "," +
+                                    binding.ocupacion.text.toString() + "," +
+                                    binding.telefono.text.toString()
 
-                        listaDatosContactos.set(posicionActualizar,concatenacion)
-                        binding.lista.adapter = ArrayAdapter<String>(binding.root.context,
-                            android.R.layout.simple_list_item_1, listaDatosContactos)
-                        binding.nombrecompleto.setText("")
-                        binding.edad.setText("")
-                        binding.direccion.setText("")
-                        binding.ocupacion.setText("")
-                        binding.telefono.setText("")
-                        posicionActualizar = -1
-                    }
-                    .setNegativeButton("Cancelar"){
-                            d,f->
-                        posicionActualizar=-1
-                        binding.nombrecompleto.setText("")
-                        binding.edad.setText("")
-                        binding.direccion.setText("")
-                        binding.ocupacion.setText("")
-                        binding.telefono.setText("")
-                        d.cancel()
-                    }
-                    .show()
+                            listaDatosContactos.set(posicionActualizar, concatenacion)
+                            binding.lista.adapter = ArrayAdapter<String>(
+                                binding.root.context,
+                                android.R.layout.simple_list_item_1, listaDatosContactos
+                            )
+                            binding.nombrecompleto.setText("")
+                            binding.edad.setText("")
+                            binding.direccion.setText("")
+                            binding.ocupacion.setText("")
+                            binding.telefono.setText("")
+                            posicionActualizar = -1
+                        }
+                        .setNegativeButton("Cancelar") { d, f ->
+                            posicionActualizar = -1
+                            binding.nombrecompleto.setText("")
+                            binding.edad.setText("")
+                            binding.direccion.setText("")
+                            binding.ocupacion.setText("")
+                            binding.telefono.setText("")
+                            d.cancel()
+                        }
+                        .show()
+                }
             }
-
 
 
         }
