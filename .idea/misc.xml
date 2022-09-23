@@ -3,9 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/drawable/fondogradiente.xml" value="0.172" />
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/drawable/ic_baseline_local_hospital_24.xml" value="0.172" />
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.172" />
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/drawable/side_nav_bar.xml" value="0.1" />
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
         <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/layout/content_main.xml" value="0.25" />
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/layout/fragment_pacientes.xml" value="0.25" />
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
         <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/menu/main.xml" value="0.25" />
+        <entry key="..\:/Users/Jesus/LADM_U1_Practica2_ArchivosPlanos/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.172" />
       </map>
     </option>
   </component>
