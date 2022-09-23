@@ -30,7 +30,7 @@ class PacientesFragment : Fragment() {
     private var param2: String? = null
 
     lateinit var binding : FragmentPacientesBinding
-    var listaDatosContactos = ArrayList<String>()
+    var listaDatosContactos: MutableList<String> = mutableListOf()
     var posicionActualizar = -1
 
     private fun insertar(){
@@ -75,7 +75,7 @@ class PacientesFragment : Fragment() {
             var bufferContenido = ""
 
             for(dato in listaDatosContactos){
-                bufferContenido += dato + ","
+                bufferContenido += dato + "\n"
             }
 
             bufferContenido = bufferContenido.substring(0,
@@ -113,7 +113,7 @@ class PacientesFragment : Fragment() {
                 bufferContenido += interactivo.next() + "\n"
             }
 
-            var vector = bufferContenido.split("&&")
+            var vector = bufferContenido.split("\n")
 
             for (v in vector) {
                 listaDatosContactos.add(v)
@@ -239,7 +239,9 @@ class PacientesFragment : Fragment() {
         }
 
         binding.mostrar.setOnClickListener {
-             abrirDesdeArchivo()
+            listaDatosContactos.clear()
+            abrirDesdeArchivo()
+
         }
         return root
     }

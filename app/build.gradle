@@ -32,6 +32,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'mx.edu.ittepic.ladm_u1_practica2_archivosplanos'
 }
 
 dependencies {
