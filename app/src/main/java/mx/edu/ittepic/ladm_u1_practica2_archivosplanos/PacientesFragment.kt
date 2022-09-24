@@ -29,17 +29,17 @@ class PacientesFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    lateinit var binding : FragmentPacientesBinding
-    var listaDatosContactos: MutableList<String> = mutableListOf()
-    var posicionActualizar = -1
+    private lateinit var binding : FragmentPacientesBinding
+    private var listaDatosContactos: MutableList<String> = mutableListOf()
+    private var posicionActualizar = -1
 
     private fun insertar(){
         if(validarCampos()){
-            var concatenacion = "Nombre: " + binding.nombrecompleto.text.toString()+"\n"+
-                    "Edad: " + binding.edad.text.toString() +"\n"+
-                    "Dirección: " + binding.direccion.text.toString() +"\n"+
-                    "Ocupación: " + binding.ocupacion.text.toString() +"\n"+
-                    "Teléfono: " + binding.telefono.text.toString()
+            val concatenacion = binding.nombrecompleto.text.toString()+"\n"+
+                    binding.edad.text.toString() +"\n"+
+                    binding.direccion.text.toString() +"\n"+
+                    binding.ocupacion.text.toString() +"\n"+
+                    binding.telefono.text.toString()
             listaDatosContactos.add(concatenacion)
             binding.lista.adapter = ArrayAdapter<String>(binding.root.context,
                 android.R.layout.simple_list_item_1,listaDatosContactos)
@@ -53,11 +53,12 @@ class PacientesFragment : Fragment() {
 
     private fun validarCampos(): Boolean {
 
-        if(binding.nombrecompleto.getText().toString() == "" &&
-            binding.edad.getText().toString() == "" &&
-            binding.direccion.getText().toString() == "" &&
-            binding.ocupacion.getText().toString() == "" &&
-            binding.telefono.getText().toString() == ""){
+        if((binding.nombrecompleto.text.toString() == "") &&
+            (binding.edad.text.toString() == "") &&
+            (binding.direccion.text.toString() == "") &&
+            (binding.ocupacion.text.toString() == "") &&
+            (binding.telefono.text.toString() == "")
+        ){
 
             Toast.makeText(context,"NO AGREGASTE INFORMACION",Toast.LENGTH_LONG)
                 .show()
@@ -71,13 +72,13 @@ class PacientesFragment : Fragment() {
 
     private fun guardarEnArchivo() {
         try{
-            var archivo = OutputStreamWriter(
+            val archivo = OutputStreamWriter(
                 binding.root.context.openFileOutput("datos.txt", Activity.MODE_PRIVATE))
             var bufferContenido = ""
 
             for(dato in listaDatosContactos){
 
-                bufferContenido += dato + ","
+                bufferContenido += "$dato,"
             }
 
             bufferContenido = bufferContenido.substring(0,
@@ -95,7 +96,7 @@ class PacientesFragment : Fragment() {
                 .setTitle("Error")
                 .setMessage(e.message)
                 .setPositiveButton("Ok"){
-                        d,i ->
+                        _, _ ->
                 }
                 .show()
         }
@@ -103,19 +104,19 @@ class PacientesFragment : Fragment() {
 
     private fun abrirDesdeArchivo() {
         try {
-            var archivo = BufferedReader(
+            val archivo = BufferedReader(
                 InputStreamReader(
                     binding.root.context.openFileInput("datos.txt")
                 )
             )
 
             var bufferContenido = ""
-            var interactivo = archivo.lineSequence().iterator()
+            val interactivo = archivo.lineSequence().iterator()
             while (interactivo.hasNext()) {
                 bufferContenido += interactivo.next() + "\n"
             }
 
-            var vector = bufferContenido.split(",")
+            val vector = bufferContenido.split(",")
 
             for (v in vector) {
                 listaDatosContactos.add(v)
@@ -130,7 +131,7 @@ class PacientesFragment : Fragment() {
             AlertDialog.Builder(context)
                 .setTitle("Error")
                 .setMessage(e.message)
-                .setPositiveButton("OK") { d, i -> }
+                .setPositiveButton("OK") { _, _ -> }
                 .show()
 
         }
@@ -148,7 +149,7 @@ class PacientesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentPacientesBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -161,20 +162,20 @@ class PacientesFragment : Fragment() {
              guardarEnArchivo()
         }
 
-        binding.lista.setOnItemClickListener { adapterView, view, i, l ->
+        binding.lista.setOnItemClickListener { _, _, i, _ ->
             AlertDialog.Builder(context)
                 .setTitle("ATENCION")
                 .setMessage("¿Que deseas hacer? Con \n ${listaDatosContactos.get(i)}")
-                .setPositiveButton("ELIMINAR"){d,f->
+                .setPositiveButton("ELIMINAR"){ _, _ ->
                     listaDatosContactos.removeAt(i)
                     binding.lista.adapter = ArrayAdapter<String>(binding.root.context,
                         android.R.layout.simple_list_item_1, listaDatosContactos)
 
                 }
-                .setNegativeButton("NADA"){d,i->}
-                .setNeutralButton("ACTUALIZAR"){d,f->
+                .setNegativeButton("NADA"){ _, _->}
+                .setNeutralButton("ACTUALIZAR"){ _, _->
                     posicionActualizar = i
-                    var temporal = listaDatosContactos.get(i).split(",")
+                    val temporal = listaDatosContactos[i].split(",")
                     binding.nombrecompleto.setText(temporal[0])
                     binding.edad.setText(temporal[1])
                     binding.direccion.setText(temporal[2])
@@ -200,19 +201,17 @@ class PacientesFragment : Fragment() {
                         .setTitle("Confirmación")
                         .setMessage(
                             "Estas seguro que deseas actualizar a ${
-                                listaDatosContactos.get(
-                                    posicionActualizar
-                                )
+                                listaDatosContactos[posicionActualizar]
                             }"
                         )
-                        .setPositiveButton("Si") { d, f ->
-                            var concatenacion = binding.nombrecompleto.text.toString() + "\n" +
+                        .setPositiveButton("Si") { _, _ ->
+                            val concatenacion = binding.nombrecompleto.text.toString() + "\n" +
                                     binding.edad.text.toString() + "\n" +
                                     binding.direccion.text.toString() + "\n" +
                                     binding.ocupacion.text.toString() + "\n" +
                                     binding.telefono.text.toString()
 
-                            listaDatosContactos.set(posicionActualizar, concatenacion)
+                            listaDatosContactos[posicionActualizar] = concatenacion
                             binding.lista.adapter = ArrayAdapter<String>(
                                 binding.root.context,
                                 android.R.layout.simple_list_item_1, listaDatosContactos
@@ -224,7 +223,7 @@ class PacientesFragment : Fragment() {
                             binding.telefono.setText("")
                             posicionActualizar = -1
                         }
-                        .setNegativeButton("Cancelar") { d, f ->
+                        .setNegativeButton("Cancelar") { d, _ ->
                             posicionActualizar = -1
                             binding.nombrecompleto.setText("")
                             binding.edad.setText("")
