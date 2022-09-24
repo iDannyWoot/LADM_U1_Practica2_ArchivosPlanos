@@ -35,19 +35,20 @@ class PacientesFragment : Fragment() {
 
     private fun insertar(){
         if(validarCampos()){
-        var concatenacion = binding.nombrecompleto.text.toString()+","+
-                binding.edad.text.toString() +","+
-                binding.direccion.text.toString() +","+
-                binding.ocupacion.text.toString() +","+
-                binding.telefono.text.toString()
-        listaDatosContactos.add(concatenacion)
-        binding.lista.adapter = ArrayAdapter<String>(binding.root.context,
-            android.R.layout.simple_list_item_1,listaDatosContactos)
-        binding.nombrecompleto.setText("")
-        binding.edad.setText("")
-        binding.direccion.setText("")
-        binding.ocupacion.setText("")
-        binding.telefono.setText("")}
+            var concatenacion = "Nombre: " + binding.nombrecompleto.text.toString()+"\n"+
+                    "Edad: " + binding.edad.text.toString() +"\n"+
+                    "Dirección: " + binding.direccion.text.toString() +"\n"+
+                    "Ocupación: " + binding.ocupacion.text.toString() +"\n"+
+                    "Teléfono: " + binding.telefono.text.toString()
+            listaDatosContactos.add(concatenacion)
+            binding.lista.adapter = ArrayAdapter<String>(binding.root.context,
+                android.R.layout.simple_list_item_1,listaDatosContactos)
+            binding.nombrecompleto.setText("")
+            binding.edad.setText("")
+            binding.direccion.setText("")
+            binding.ocupacion.setText("")
+            binding.telefono.setText("")
+        }
     }
 
     private fun validarCampos(): Boolean {
@@ -75,7 +76,8 @@ class PacientesFragment : Fragment() {
             var bufferContenido = ""
 
             for(dato in listaDatosContactos){
-                bufferContenido += dato + "\n"
+
+                bufferContenido += dato + ","
             }
 
             bufferContenido = bufferContenido.substring(0,
@@ -113,7 +115,7 @@ class PacientesFragment : Fragment() {
                 bufferContenido += interactivo.next() + "\n"
             }
 
-            var vector = bufferContenido.split("\n")
+            var vector = bufferContenido.split(",")
 
             for (v in vector) {
                 listaDatosContactos.add(v)
@@ -204,10 +206,10 @@ class PacientesFragment : Fragment() {
                             }"
                         )
                         .setPositiveButton("Si") { d, f ->
-                            var concatenacion = binding.nombrecompleto.text.toString() + "," +
-                                    binding.edad.text.toString() + "," +
-                                    binding.direccion.text.toString() + "," +
-                                    binding.ocupacion.text.toString() + "," +
+                            var concatenacion = binding.nombrecompleto.text.toString() + "\n" +
+                                    binding.edad.text.toString() + "\n" +
+                                    binding.direccion.text.toString() + "\n" +
+                                    binding.ocupacion.text.toString() + "\n" +
                                     binding.telefono.text.toString()
 
                             listaDatosContactos.set(posicionActualizar, concatenacion)
