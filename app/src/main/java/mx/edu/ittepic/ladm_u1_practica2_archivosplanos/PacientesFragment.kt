@@ -116,6 +116,9 @@ class PacientesFragment : Fragment() {
                 bufferContenido += interactivo.next() + "\n"
             }
 
+            bufferContenido = bufferContenido.substring(0,
+                bufferContenido.lastIndexOf("\n"))
+
             val vector = bufferContenido.split(",")
 
             for (v in vector) {
@@ -175,7 +178,7 @@ class PacientesFragment : Fragment() {
                 .setNegativeButton("NADA"){ _, _->}
                 .setNeutralButton("ACTUALIZAR"){ _, _->
                     posicionActualizar = i
-                    val temporal = listaDatosContactos[i].split(",")
+                    val temporal = listaDatosContactos[i].split("\n")
                     binding.nombrecompleto.setText(temporal[0])
                     binding.edad.setText(temporal[1])
                     binding.direccion.setText(temporal[2])
